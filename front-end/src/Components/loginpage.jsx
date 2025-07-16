@@ -25,8 +25,8 @@ function LoginPage() {
     <>
       <div>
         <header>
-          <h1 className="heading">GeeksforGeeks</h1>
-          <h3 className="title">Sliding Login & Registration Form</h3>
+          <h1 className="heading">Niaw Diabar</h1>
+          <h3 className="title">Association des hommes niaw diabar</h3>
         </header>
 
         <div className="container">

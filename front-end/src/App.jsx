@@ -1,10 +1,18 @@
 import LoginPage from "./Components/loginpage";
-import Navbar from "./Components/navbar"; 
+import Navbar from "./Components/navbar";
+import Chatperent from "./Components/chatperent";
+
 function App() {
   return (
     <>
-      {/* <LoginPage /> here is where we will add the login page */}
+      
       <Navbar />
+      {/* <LoginPage />  */}
+      <Chatperent />
+      
+      
+
+
     </>
   );
 }

@@ -11,7 +11,7 @@ function Contact() {
             <div className="container-block form-wrapper">
               <p className="text-blk contactus-head">Send your feedback to the developer</p>
               <p className="text-blk contactus-subhead">
-                Give your feedback and suggestions to improve our service.
+                Give your feedbacks and suggestions to improve our service.
               </p>
               <div className="responsive-container-block">
                 <div

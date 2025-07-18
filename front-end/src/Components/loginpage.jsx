@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+
 import "../stylesCSS/loginpage.css";
 
 const BASE_URL = "http://localhost:3000";
@@ -22,30 +23,67 @@ function LoginPage() {
     signupName.trim() !== "" &&
     signupEmail.trim() !== "" &&
     signupPassword.trim() !== "" &&
-    signupConfirm.trim() !== "";
+    signupConfirm.trim() !== "" &&
+    signupPassword === signupConfirm;
 
-  const [userInfo, setUserInfo] = useState([]);
+  const [message, setMessage] = useState("");
 
-  async function getUserInfo() {
-    const response = await fetch(`${BASE_URL}/get`);
-    const data = await response.json();
-    setUserInfo(data);
+  async function handleLogin(e) {
+    e.preventDefault(); // Prevent form reload
+    try {
+      const response = await fetch(`${BASE_URL}/post`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setMessage("Login successful!");
+        console.log("Login successful!", data.user);
+        // Redirect or set user state here
+      } else {
+        setMessage(data.message || "Invalid email or password.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setMessage("Network error. Please try again.");
+    }
   }
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-  async function handleLogin() {
-    const response = await fetch(`${BASE_URL}/post`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-    });
-    const data = await response.json();
-    console.log(data);
-  }
+  async function handleSignup(e) {
+    e.preventDefault();
+    if (signupPassword !== signupConfirm) {
+      setMessage("Passwords do not match!");
+      return;
+    }
 
-  //console.log(userInfo);
+    try {
+      const response = await fetch(`${BASE_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: signupName,
+          email: signupEmail,
+          password: signupPassword,
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setMessage("Registration successful! You can now login.");
+        // Clear signup form
+        setSignupName("");
+        setSignupEmail("");
+        setSignupPassword("");
+        setSignupConfirm("");
+        setIsSignup(false);
+      } else {
+        setMessage(data.message || "Registration failed.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setMessage("Network error. Please try again.");
+    }
+  }
 
   return (
     <>
@@ -66,7 +104,15 @@ function LoginPage() {
               Signup
             </button>
           </div>
-
+          {message && (
+            <div
+              className={`message ${
+                message.includes("successful") ? "success" : "error"
+              }`}
+            >
+              {message}
+            </div>
+          )}
           <div
             className={`form-section ${isSignup ? "form-section-move" : ""}`}
           >
@@ -123,7 +169,11 @@ function LoginPage() {
                 value={signupConfirm}
                 onChange={(e) => setSignupConfirm(e.target.value)}
               />
-              {isSignupValid && <button className="clkbtn">Signup</button>}
+              {isSignupValid && (
+                <button className="clkbtn" onClick={handleSignup}>
+                  Signup
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../stylesCSS/loginpage.css";
 
-function LoginPage() {
-    const [isSignup, setIsSignup] = useState(false);
+const BASE_URL = "http://localhost:3000";
 
-    // Login form state
-    const [loginEmail, setLoginEmail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-  
-    // Signup form state
-    const [signupName, setSignupName] = useState('');
-    const [signupEmail, setSignupEmail] = useState('');
-    const [signupPassword, setSignupPassword] = useState('');
-    const [signupConfirm, setSignupConfirm] = useState('');
-  
-    // Validation
-    const isLoginValid = loginEmail.trim() !== '' && loginPassword.trim() !== '';
-    const isSignupValid =
-      signupName.trim() !== '' &&
-      signupEmail.trim() !== '' &&
-      signupPassword.trim() !== '' &&
-      signupConfirm.trim() !== '';
+function LoginPage() {
+  const [isSignup, setIsSignup] = useState(false);
+
+  // Login form state
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  // Signup form state
+  const [signupName, setSignupName] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [signupConfirm, setSignupConfirm] = useState("");
+
+  // Validation
+  const isLoginValid = loginEmail.trim() !== "" && loginPassword.trim() !== "";
+  const isSignupValid =
+    signupName.trim() !== "" &&
+    signupEmail.trim() !== "" &&
+    signupPassword.trim() !== "" &&
+    signupConfirm.trim() !== "";
+
+  const [userInfo, setUserInfo] = useState([]);
+
+  async function getUserInfo() {
+    const response = await fetch(`${BASE_URL}/get`);
+    const data = await response.json();
+    setUserInfo(data);
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+  async function handleLogin() {
+    const response = await fetch(`${BASE_URL}/post`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
+  //console.log(userInfo);
+
   return (
     <>
       <div>
@@ -60,7 +86,11 @@ function LoginPage() {
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
               />
-              {isLoginValid && <button className="clkbtn">Login</button>}
+              {isLoginValid && (
+                <button className="clkbtn" onClick={handleLogin}>
+                  Login
+                </button>
+              )}
             </div>
 
             {/* Signup Box */}

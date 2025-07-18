@@ -2,16 +2,16 @@ import LoginPage from "./Components/loginpage";
 import Navbar from "./Components/navbar";
 import Chatperent from "./Components/chatperent";
 import Footer from "./Components/footer";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <>
       
-      <Navbar />
-      {/* <LoginPage />  */}
-      <Chatperent />
-      <Footer />
-      
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/chat" element={<><Chatperent /> <Navbar /></>} />
+        
+      </Routes>
 
 
     </>

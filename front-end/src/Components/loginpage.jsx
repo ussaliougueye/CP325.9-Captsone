@@ -25,7 +25,7 @@ function LoginPage() {
     <>
       <div>
         <header>
-          <h1 className="heading">Niaw Diabar</h1>
+          <h1 className="heading">Loging page</h1>
           <h3 className="title">Association des hommes niaw diabar</h3>
         </header>
 

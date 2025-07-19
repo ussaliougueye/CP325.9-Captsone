@@ -5,7 +5,7 @@ import Footer from "./Components/footer";
 import { Routes, Route } from 'react-router-dom'
 function App() {
   return (
-    <>
+    <div>
       
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -14,7 +14,7 @@ function App() {
       </Routes>
 
 
-    </>
+    </div>
   );
 }
 

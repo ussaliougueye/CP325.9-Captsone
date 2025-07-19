@@ -2,46 +2,63 @@ import React, { useState } from "react";
 import "../stylesCSS/navbar.css";
 
 function Navbar() {
-  // const user = JSON.parse(localStorage.getItem("user"));
-  // console.log(user);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <>
+    <div>
       <nav>
-        {/* Checkbox for toggling menu */}
-        <input type="checkbox" id="check" />
-
-        {/* Menu icon */}
-        <label htmlFor="check" className="checkbtn">
-          <i className="fas fa-bars"></i>
-        </label>
-
         {/* Site logo */}
         <label className="logo">Profil name and image</label>
 
+        {/* Hamburger menu button */}
+        <button
+          className={`hamburger ${isMenuOpen ? "active" : ""}`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         {/* Navigation links */}
-        <ul>
+        <ul className={`nav-menu ${isMenuOpen ? "nav-open" : ""}`}>
           <li>
-            <a className="active" href="#">
-            Saliou
+            <a href="#" onClick={closeMenu}>
+              Saliou
             </a>
           </li>
           <li>
-            <a href="#">Chat</a>
+            <a href="#" onClick={closeMenu}>
+              Chat
+            </a>
           </li>
           <li>
-            <a href="#">Direct Messages</a>
+            <a href="#" onClick={closeMenu}>
+              Direct Messages
+            </a>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <a href="#" onClick={closeMenu}>
+              Contact
+            </a>
           </li>
           <li>
-            <a href="#">Feedback</a>
+            <a href="#" onClick={closeMenu}>
+              Feedback
+            </a>
           </li>
         </ul>
       </nav>
-
-      
-    </>
+    </div>
   );
 }
 

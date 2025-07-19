@@ -35,9 +35,16 @@ app.get("/get", async (req, res) => {
   }
 });
 app.get("/get/:email", async (req, res) => {
-  const email = req.params.email;
-  const user = await User.findOne({ email });
-  res.json(user);
+  try {
+    const email = req.params.email;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
 });
 
 // Start server

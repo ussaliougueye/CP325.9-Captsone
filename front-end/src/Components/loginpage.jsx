@@ -40,7 +40,7 @@ function LoginPage() {
   async function handleLogin(e) {
     e.preventDefault(); // Prevent form reload
     try {
-      const response = await fetch(`${BASE_URL}/get`, {
+      const response = await fetch(`${BASE_URL}/get/${loginEmail}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         //body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -50,12 +50,7 @@ function LoginPage() {
       console.log(data);
       console.log("------------");
       console.log(loginEmail, loginPassword);
-      if (data.success) {
-        alert("Login successful!");
-        // Redirect or set user state here
-      } else {
-        alert("Invalid email or password.");
-      }
+      
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -80,7 +75,9 @@ function LoginPage() {
               Signup
             </button>
           </div>
-
+          <div>
+            
+          </div>
           <div
             className={`form-section ${isSignup ? "form-section-move" : ""}`}
           >

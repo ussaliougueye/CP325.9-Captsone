@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 import "../stylesCSS/loginpage.css";
 
 const BASE_URL = "http://localhost:3000";
 
-function LoginPage() {
-  const [isSignup, setIsSignup] = useState(false);
 
+function LoginPage() {
+  const navigate = useNavigate();
+  const [isSignup, setIsSignup] = useState(false);
+  
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -50,9 +52,16 @@ function LoginPage() {
       console.log(data);
       console.log("------------");
       console.log(loginEmail, loginPassword);
-      
+      if (data.password === loginPassword) {
+        console.log("✅ Logged in successfully");
+        navigate("/chat"); //  Redirect after success
+      }
+      else {
+        console.log("❌ Login failed");
+      }
     } catch (error) {
       console.error("Login error:", error);
+      
     }
   }
 

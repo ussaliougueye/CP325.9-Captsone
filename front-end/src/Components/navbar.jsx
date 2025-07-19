@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../stylesCSS/navbar.css";
 
 function Navbar() {
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user);
   return (
     <>
       <nav>

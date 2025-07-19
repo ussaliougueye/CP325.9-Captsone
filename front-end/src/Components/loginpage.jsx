@@ -49,11 +49,12 @@ function LoginPage() {
         //cette ligne ci-dessus ne doit exister que pour un post methode envoyer des donnees
       });
       const data = await response.json();
-      console.log(data);
-      console.log("------------");
-      console.log(loginEmail, loginPassword);
+      // console.log(data);
+      // console.log("------------");
+      // console.log(loginEmail, loginPassword);
       if (data.password === loginPassword) {
-        console.log("✅ Logged in successfully");
+        //console.log("✅ Logged in successfully");
+        localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/chat"); //  Redirect after success
       }
       else {

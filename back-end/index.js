@@ -34,6 +34,11 @@ app.get("/get", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch messages" });
   }
 });
+app.get("/get/:email", async (req, res) => {
+  const email = req.params.email;
+  const user = await User.findOne({ email });
+  res.json(user);
+});
 
 // Start server
 app.listen(PORT, () =>

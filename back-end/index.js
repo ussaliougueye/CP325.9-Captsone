@@ -19,13 +19,18 @@ db.once("open", () => console.log("MongoDB connected"));
 // API Route
 app.post("/post", async (req, res) => {
   try {
-    const newMessage = new User(req.body);
-    await newMessage.save();
-    res.status(201).json({ message: "Message saved successfully" });
+    console.log("Received data:", req.body); // Log incoming data
+    const newUser = new User(req.body);
+    await newUser.save();
+    res.status(201).json({ message: "User saved successfully" });
   } catch (err) {
-    res.status(500).json({ error: "Failed to save message" });
+    console.error("Error saving user:", err); // Log error details
+    res
+      .status(500)
+      .json({ error: "Failed to save user", details: err.message });
   }
 });
+
 app.get("/get", async (req, res) => {
   try {
     const messages = await User.find();

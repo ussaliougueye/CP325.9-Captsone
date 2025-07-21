@@ -17,7 +17,7 @@ const userLogged = JSON.parse(localStorage.getItem("user"));
     <div>
       <nav>
         {/* Site logo */}
-        <label className="logo"> {userLogged.FirstName} {userLogged.LastName}</label>
+        <label className="logo"> {userLogged.firstName} {userLogged.lastName}</label>
           
         {/* Hamburger menu button */}
         <button

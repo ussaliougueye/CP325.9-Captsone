@@ -1,121 +1,40 @@
 .containerParent {
-  margin-top: 700px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 10px;
-  padding-top: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.containParent > div {
-  background-color: #f1f1f1;
-  text-align: center;
-  font-size: 30px;
-}
-
-.containParent {
-  grid-column-start: 3;
-  grid-column-end: 9;
-  border: 2px solid rgb(32, 187, 218);
-  border-radius: 10px;
-  padding: 5px;
+  margin: 90px auto 2em auto;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  padding: 2em 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
 }
 
 .advertisement {
-  border: 2px solid rgb(32, 187, 218);
+  background: #f1f5fb;
   border-radius: 10px;
-  padding: 5px;
+  padding: 1em;
+  color: #2563eb;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
-/* Tablet Responsive Design */
-@media (max-width: 1024px) {
-  .containerParent {
-    margin-top: 40%;
-    grid-template-columns: auto auto;
-    gap: 15px;
-    padding: 15px;
-  }
+.containParent {
+  background: #f7f9fb;
+  border-radius: 10px;
+  padding: 1.5em;
+  color: #222;
+  font-size: 1.1em;
+  line-height: 1.7;
+}
 
+@media (max-width: 800px) {
+  .containerParent {
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
   .containParent {
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-
-  .advertisement {
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-
-  .containParent > div {
-    font-size: 24px;
-  }
-}
-
-/* Mobile Responsive Design */
-@media (max-width: 768px) {
-  .containerParent {
-    margin-top: 30%;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 10px;
-  }
-
-  .containParent {
-    grid-column-start: 1;
-    grid-column-end: 2;
-  }
-
-  .advertisement {
-    grid-column-start: 1;
-    grid-column-end: 2;
-  }
-
-  .containParent > div {
-    font-size: 18px;
-  }
-
-  .containParent,
-  .advertisement {
-    padding: 8px;
-  }
-}
-
-/* Small Mobile Responsive Design */
-@media (max-width: 480px) {
-  .containerParent {
-    margin-top: 25%;
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .containParent > div {
-    font-size: 16px;
-  }
-
-  .containParent,
-  .advertisement {
-    padding: 6px;
-    border-radius: 8px;
-  }
-}
-
-/* Extra Small Mobile Responsive Design */
-@media (max-width: 320px) {
-  .containerParent {
-    margin-top: 20%;
-    gap: 6px;
-    padding: 6px;
-  }
-
-  .containParent > div {
-    font-size: 14px;
-  }
-
-  .containParent,
-  .advertisement {
-    padding: 4px;
-    border-radius: 6px;
+    padding: 1em;
   }
 }

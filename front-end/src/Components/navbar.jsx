@@ -7,7 +7,7 @@ function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-const userLogged = JSON.parse(localStorage.getItem("user"));
+  const userLogged = JSON.parse(localStorage.getItem("user"));
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -17,8 +17,11 @@ const userLogged = JSON.parse(localStorage.getItem("user"));
     <div>
       <nav>
         {/* Site logo */}
-        <label className="logo"> {userLogged.firstName} {userLogged.lastName}</label>
-          
+        <label className="logo">
+          {" "}
+          {userLogged.firstName} {userLogged.lastName}
+        </label>
+
         {/* Hamburger menu button */}
         <button
           className={`hamburger ${isMenuOpen ? "active" : ""}`}
@@ -32,11 +35,7 @@ const userLogged = JSON.parse(localStorage.getItem("user"));
 
         {/* Navigation links */}
         <ul className={`nav-menu ${isMenuOpen ? "nav-open" : ""}`}>
-          <li>
-            <a href="#" onClick={closeMenu}>
-              Saliou
-            </a>
-          </li>
+          
           <li>
             <a href="#" onClick={closeMenu}>
               Chat
@@ -58,6 +57,8 @@ const userLogged = JSON.parse(localStorage.getItem("user"));
             </a>
           </li>
         </ul>
+        {/* Backdrop for mobile dropdown */}
+        {isMenuOpen && <div className="nav-backdrop" onClick={closeMenu}></div>}
       </nav>
     </div>
   );

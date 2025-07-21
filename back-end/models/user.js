@@ -9,6 +9,15 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    firsename: {
+      type: String,
+    
+      trim: true,
+    },
+    lastname: {
+      type: String,
+      trim: true,
+    },
     email: {
       type: String,
       unique: true,

@@ -14,7 +14,9 @@ function LoginPage() {
   const [loginPassword, setLoginPassword] = useState("");
 
   // Signup form state
-  const [signupName, setSignupName] = useState("");
+  //const [signupName, setSignupName] = useState("");
+  const [signupFirstName, setSignupFirstName] = useState("");
+  const [signupLastName, setSignupLastName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupConfirm, setSignupConfirm] = useState("");
@@ -22,7 +24,8 @@ function LoginPage() {
   // Validation
   const isLoginValid = loginEmail.trim() !== "" && loginPassword.trim() !== "";
   const isSignupValid =
-    signupName.trim() !== "" &&
+    signupFirstName.trim() !== "" &&
+    signupLastName.trim() !== "" &&
     signupEmail.trim() !== "" &&
     signupPassword.trim() !== "" &&
     signupConfirm.trim() !== "";
@@ -49,12 +52,12 @@ function LoginPage() {
         //cette ligne ci-dessus ne doit exister que pour un post methode envoyer des donnees
       });
       const data = await response.json();
-      // console.log(data);
+      //console.log(data);
       // console.log("------------");
       // console.log(loginEmail, loginPassword);
       if (data.password === loginPassword) {
         //console.log("✅ Logged in successfully");
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user", JSON.stringify(data));
         navigate("/chat"); //  Redirect after success
       }
       else {
@@ -63,6 +66,32 @@ function LoginPage() {
     } catch (error) {
       console.error("Login error:", error);
       
+    }
+  };
+  async function handleSignup(e) {
+    e.preventDefault(); // Prevent form reload
+    if (signupPassword !== signupConfirm) {
+      console.error("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await fetch(`${BASE_URL}/post`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: signupFirstName,
+          lastName: signupLastName,
+          email: signupEmail,
+          password: signupPassword,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      //console.log("✅ Signed up successfully");
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/chat"); // Redirect after success
+    } catch (error) {
+      console.error("Signup error:", error);
     }
   }
 
@@ -116,13 +145,21 @@ function LoginPage() {
 
             {/* Signup Box */}
             <div className="signup-box">
+            <input
+                type="text"
+                className="name ele"
+                placeholder="Enter your first name"
+                value={signupFirstName}
+                onChange={(e) => setSignupFirstName(e.target.value)}
+              />
               <input
                 type="text"
                 className="name ele"
-                placeholder="Enter your name"
-                value={signupName}
-                onChange={(e) => setSignupName(e.target.value)}
+                placeholder="Enter your last name"
+                value={signupLastName}
+                onChange={(e) => setSignupLastName(e.target.value)}
               />
+              
               <input
                 type="email"
                 className="email ele"
@@ -144,7 +181,7 @@ function LoginPage() {
                 value={signupConfirm}
                 onChange={(e) => setSignupConfirm(e.target.value)}
               />
-              {isSignupValid && <button className="clkbtn">Signup</button>}
+              {isSignupValid && <button className="clkbtn" onClick={handleSignup}>Signup</button>}
             </div>
           </div>
         </div>

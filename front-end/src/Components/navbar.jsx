@@ -7,6 +7,7 @@ function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+const userLogged = JSON.parse(localStorage.getItem("user"));
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -16,8 +17,8 @@ function Navbar() {
     <div>
       <nav>
         {/* Site logo */}
-        <label className="logo">Profil name and image</label>
-
+        <label className="logo"> {userLogged.FirstName} {userLogged.LastName}</label>
+          
         {/* Hamburger menu button */}
         <button
           className={`hamburger ${isMenuOpen ? "active" : ""}`}

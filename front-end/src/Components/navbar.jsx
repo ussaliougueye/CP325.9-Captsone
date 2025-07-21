@@ -16,21 +16,19 @@ function Navbar() {
   return (
     <div>
       <nav>
-        {/* Site logo */}
+       
         <label className="logo">
-          {" "}
+          
           {userLogged.firstName} {userLogged.lastName}
         </label>
 
-        {/* Hamburger menu button */}
+        
         <button
           className={`hamburger ${isMenuOpen ? "active" : ""}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          
         </button>
 
         {/* Navigation links */}
@@ -54,6 +52,11 @@ function Navbar() {
           <li>
             <a href="#" onClick={closeMenu}>
               Feedback
+            </a>
+          </li>
+          <li style={{"color": "red"}}>
+            <a href="http://localhost:5173/" onClick={closeMenu}>
+              LogOut
             </a>
           </li>
         </ul>

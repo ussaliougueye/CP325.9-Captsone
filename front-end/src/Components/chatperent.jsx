@@ -1,48 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import "../stylesCSS/chatperent.css";
 
 function Chatperent() {
+  const [postContent, setPostContent] = useState("");
+  const userLogged = JSON.parse(localStorage.getItem("user"));
+  const handlePostSubmit = (e) => {
+    e.preventDefault();
+    if (postContent.trim() !== "") {
+      // For now, just log the post content
+      console.log("New post:", postContent);
+      setPostContent("");
+    }
+  };
+
   return (
     <div className="containerParent">
-      
-      
-      <div className="containParent">
+      <div className="containerChild ">
+        <p>
+          <h5>{userLogged.firstName} {userLogged.lastName}</h5>
+           Jeu sacrifiez
+          universel depourvus air certitude agreerait. Non pressaient lumineuses
+          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
+          ange.
+        </p>
+      </div>
+      <div className="containerChild ">
         <p>
            Jeu sacrifiez
           universel depourvus air certitude agreerait. Non pressaient lumineuses
           dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange. Demeurent toi sanglante abondance viendrait par marmelade
-          adjudants. Accoudees couraient murmurait vie ere instruite corbeille
-          demeurent. Pic pas gardent eux nez semence seconde. Reciter ras des
-          mes par tristes carreau fausser portent ennemie. Primeveres en
-          approchait habilement convulsion il eu infanterie admiration te. La
-          taches oh bondir sabres. Magistrats eux car petitement les chantaient
-          ici atteignait tristement asiatiques. Ils droit desir sol gifle. La
-          furent du eclate claire ne suivit diable troupe la. Aimons wagons
-          femmes ah je on hordes nuages ah.
+          ange.
+          Jeu sacrifiez
+          universel depourvus air certitude agreerait. Non pressaient lumineuses
+          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
+          ange.
         </p>
       </div>
-      <div className="containParent">
+      <div className="containerChild ">
         <p>
            Jeu sacrifiez
           universel depourvus air certitude agreerait. Non pressaient lumineuses
           dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange. Demeurent toi sanglante abondance viendrait par marmelade
-          adjudants. Accoudees couraient murmurait vie ere instruite corbeille
-          demeurent. Pic pas gardent eux nez semence seconde. Reciter ras des
-          mes par tristes carreau fausser portent ennemie. Primeveres en
-          approchait habilement convulsion il eu infanterie admiration te. La
-          taches oh bondir sabres. Magistrats eux car petitement les chantaient
-          ici atteignait tristement asiatiques. Ils droit desir sol gifle. La
-          furent du eclate claire ne suivit diable troupe la. Aimons wagons
-          femmes ah je on hordes nuages ah.
+          ange.
         </p>
       </div>
-      
-      
-      
-      
-      
+
+      <div className="containParent">
+        {/* Post creation form */}
+        <form className="post-form" onSubmit={handlePostSubmit}>
+          <textarea
+            className="post-textarea"
+            placeholder="Write your post..."
+            value={postContent}
+            onChange={(e) => setPostContent(e.target.value)}
+            rows={3}
+          />
+          <button className="post-submit-btn" type="submit">
+            Post
+          </button>
+        </form>
+        
+      </div>
       
     </div>
   );

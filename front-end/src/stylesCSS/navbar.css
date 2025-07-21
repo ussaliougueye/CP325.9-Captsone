@@ -9,7 +9,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background: #23272f;
+  background: #3b9fe1;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   z-index: 100;
   display: flex;
@@ -63,7 +63,7 @@ nav {
   transition: background 0.2s, color 0.2s;
 }
 .nav-menu li a:hover {
-  background: #353a42;
+  background: #bed5fb;
   color: #2563eb;
 }
 

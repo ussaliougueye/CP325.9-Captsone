@@ -75,7 +75,7 @@ function LoginPage() {
           email: signupEmail,
           password: signupPassword
         }),
-      });
+      }); 
       const data = await response.json();
       console.log("avant le setItem");
       console.log( data);

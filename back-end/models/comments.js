@@ -8,6 +8,7 @@ const commentSchema = new mongoose.Schema({
     comment: {
         type: String,
         required: true,
+        unique: true,
     },
     fullname: {
         type: String,

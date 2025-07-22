@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user.js");
 const Comment = require("./models/comments.js");
+const Feedback = require("./models/feedback.js");
 const app = express();
 const PORT = 3000;
 const dotenv = require("dotenv");
@@ -67,6 +68,15 @@ app.get("/comment", async (req, res) => {
     res.json(comments);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch comments" });
+  }
+});
+app.post("/feedback", async (req, res) => {
+  try {
+    const newFeedback = new Feedback(req.body);
+    await newFeedback.save();
+    res.status(201).json({ message: "Feedback received" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save feedback" });
   }
 });
 app.get("/get/:email", async (req, res) => {

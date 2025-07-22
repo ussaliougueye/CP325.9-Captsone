@@ -50,7 +50,7 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#" onClick={closeMenu}>
+            <a href="/feedback" onClick={closeMenu}>
               Feedback
             </a>
           </li>

@@ -1,0 +1,26 @@
+
+.post-textarea {
+    width: 100%;
+    min-height: 60px;
+    resize: vertical;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.8em 1em;
+    font-size: 1em;
+    background: #f7f9fb;
+    transition: border 0.2s;
+  }
+
+  .post-submit-btn {
+    align-self: flex-end;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6em 1.5em;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.2em;
+  }

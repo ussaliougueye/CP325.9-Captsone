@@ -91,6 +91,24 @@ app.get("/get/:email", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user" });
   }
 });
+app.put("/user/:email", async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+    const updateFields = { firstName, lastName, email };
+    if (password) updateFields.password = password;
+    const updatedUser = await User.findOneAndUpdate(
+      { email: req.params.email },
+      updateFields,
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update user" });
+  }
+});
 // Start server
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)

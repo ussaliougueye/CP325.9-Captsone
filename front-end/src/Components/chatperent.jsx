@@ -10,40 +10,23 @@ function Chatperent() {
       // For now, just log the post content
       console.log("New post:", postContent);
       setPostContent("");
-    }
+    };
+    fetch("http://localhost:3000/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        comment: postContent,
+        email: userLogged.email,
+        fullname: userLogged.firstName + " " + userLogged.lastName,
+      }),
+    });
   };
-
+  
   return (
     <div className="containerParent">
-      <div className="containerChild ">
-      {/* <h5>{userLogged.firstName} {userLogged.lastName}</h5> */}
-        <p>
-           Jeu sacrifiez
-          universel depourvus air certitude agreerait. Non pressaient lumineuses
-          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange.
-        </p>
-      </div>
-      <div className="containerChild ">
-        <p>
-           Jeu sacrifiez
-          universel depourvus air certitude agreerait. Non pressaient lumineuses
-          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange.
-          Jeu sacrifiez
-          universel depourvus air certitude agreerait. Non pressaient lumineuses
-          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange.
-        </p>
-      </div>
-      <div className="containerChild ">
-        <p>
-           Jeu sacrifiez
-          universel depourvus air certitude agreerait. Non pressaient lumineuses
-          dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca
-          ange.
-        </p>
-      </div>
+     
 
       <div className="containParent">
         {/* Post creation form */}
@@ -55,7 +38,7 @@ function Chatperent() {
             onChange={(e) => setPostContent(e.target.value)}
             rows={3}
           />
-          <button className="post-submit-btn" type="submit">
+          <button className="post-submit-btn" type="submit" onClick={handlePostSubmit}>
             Post
           </button>
         </form>

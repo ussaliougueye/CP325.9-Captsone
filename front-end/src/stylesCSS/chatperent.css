@@ -79,7 +79,11 @@
 .post-submit-btn:hover {
   background: #1e40af;
 }
-
+h6 {
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #092736;
+}
 @media (max-width: 800px) {
   .containerParent {
     max-width: 98vw;

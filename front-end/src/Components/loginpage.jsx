@@ -73,11 +73,12 @@ function LoginPage() {
           firstName: signupFirstName,
           lastName: signupLastName,
           email: signupEmail,
-          password: signupPassword,
+          password: signupPassword
         }),
       });
       const data = await response.json();
-      console.log(data);
+      console.log("avant le setItem");
+      console.log( data);
       //console.log("✅ Signed up successfully");
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/chat"); // Redirect after success

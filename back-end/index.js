@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user.js");
+const Comment = require("./models/comments.js");
 const app = express();
 const PORT = 3000;
 const dotenv = require("dotenv");
@@ -22,7 +23,7 @@ app.post("/post", async (req, res) => {
     console.log("Received data:", req.body); // Log incoming data
     const newUser = new User(req.body);
     await newUser.save();
-    res.status(201).json({ message: "User saved successfully" });
+    res.status(201).json(newUser); // Return the newly created user
   } catch (err) {
     console.error("Error saving user:", err); // Log error details
     res
@@ -51,7 +52,35 @@ app.get("/get/:email", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user" });
   }
 });
-
+app.post("/comment", async (req, res) => {
+  try {
+    const newComment = new Comment(req.body);
+    await newComment.save();
+    res.status(201).json(newComment);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save comment" });
+  }
+});
+app.get("/comment", async (req, res) => {
+  try {
+    const comments = await Comment.find();
+    res.json(comments);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch comments" });
+  }
+});
+app.get("/get/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
+});
 // Start server
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)

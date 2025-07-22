@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../stylesCSS/chatperent.css";
 
 function Chatperent() {
@@ -16,8 +16,8 @@ function Chatperent() {
   return (
     <div className="containerParent">
       <div className="containerChild ">
+      {/* <h5>{userLogged.firstName} {userLogged.lastName}</h5> */}
         <p>
-          <h5>{userLogged.firstName} {userLogged.lastName}</h5>
            Jeu sacrifiez
           universel depourvus air certitude agreerait. Non pressaient lumineuses
           dut legerement. Les masse neige desir uns senti. Au deja afin qu me ca

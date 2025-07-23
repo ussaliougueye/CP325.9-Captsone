@@ -10,7 +10,7 @@ function Profil() {
   const [status, setStatus] = useState("");
 
   if (!user) {
-    return <div>Please log in to view your profile.</div>;
+    return <div>Please login to view your profile.</div>;
   }
 
   const handleSubmit = (e) => {

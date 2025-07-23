@@ -43,7 +43,7 @@ function LoginPage() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, []); // Fetches users when the component mounts
 
   async function handleLogin(e) {
     e.preventDefault(); // Prevent form reload

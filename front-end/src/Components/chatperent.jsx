@@ -20,7 +20,7 @@ function Chatperent() {
         }
       })
       .catch(() => setFetchComments([]));
-  };
+  }; // Fetches all comments from the backend and updates the state
 
   // Like handler
   const handleLike = async (commentId) => {
@@ -34,11 +34,11 @@ function Chatperent() {
     } catch {
       // Optionally handle error
     }
-  };
+  }; // Sends a like/unlike request for a comment and refreshes the comments
 
   useEffect(() => {
     getComments();
-  }, []);
+  }, []); // Fetches comments when the component mounts
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ function Chatperent() {
         getComments(); // Refresh comments after posting
       });
     }
-  };
+  }; // Handles the submission of a new post/comment
 
   return (
     <div className="containerParent">

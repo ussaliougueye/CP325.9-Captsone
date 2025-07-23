@@ -7,12 +7,12 @@ function Navbar() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
+  }; // Toggles the navigation menu open or closed
   const userLogged = JSON.parse(localStorage.getItem("user"));
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-  };
+  }; // Closes the navigation menu
 
   return (
     <div>

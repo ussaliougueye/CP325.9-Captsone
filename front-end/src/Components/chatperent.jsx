@@ -21,6 +21,20 @@ function Chatperent() {
       .catch(() => setFetchComments([]));
   };
 
+  // Like handler
+  const handleLike = async (commentId) => {
+    try {
+      await fetch(`http://localhost:3000/comment/${commentId}/like`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userLogged.email }),
+      });
+      getComments(); // Refresh comments after like
+    } catch {
+      // Optionally handle error
+    }
+  };
+
   useEffect(() => {
     getComments();
   }, []);
@@ -47,12 +61,31 @@ function Chatperent() {
 
   return (
     <div className="containerParent">
-      {fetchComments.map((comment) => (
-        <div key={comment._id} className="containerChild">
-          <h6>{comment.fullname}</h6>
-          <p>{comment.comment}</p>
-        </div>
-      ))}
+      {fetchComments.map((comment) => {
+        const isOwnPost = comment.email === userLogged.email; {/*this state allows me to make sur the user can not like his or her own post*/ }
+        const likes = comment.likes ? comment.likes.length : 0;
+        const alreadyLiked =
+          comment.likes && comment.likes.includes(userLogged.email);
+        return (
+          <div
+            key={comment._id}
+            className="containerChild"
+            style={{ position: "relative" }}
+          >
+            <h6>{comment.fullname}</h6>
+            <p>{comment.comment}</p>
+            {!isOwnPost && (
+              <button
+                className={`like-button${alreadyLiked ? " liked" : ""}`}
+                style={{ position: "absolute", bottom: -30, right: 10 }}
+                onClick={() => handleLike(comment._id)}
+              >
+                {alreadyLiked ? "💙" : "🤍"}{likes} {/*check if the button is alreadyLiked before letting it be clicable */}
+              </button>
+            )}
+          </div>
+        );
+      })}
 
       <div className="containParent">
         <form className="post-form" onSubmit={handlePostSubmit}>

@@ -109,6 +109,25 @@ app.put("/user/:email", async (req, res) => {
     res.status(500).json({ error: "Failed to update user" });
   }
 });
+app.put("/comment/:id/like", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const comment = await Comment.findById(req.params.id);
+    if (!comment) {
+      return res.status(404).json({ error: "Comment not found" });
+    }
+    const index = comment.likes.indexOf(email);
+    if (index === -1) {
+      comment.likes.push(email); // Like
+    } else {
+      comment.likes.splice(index, 1); // Unlike
+    }
+    await comment.save();
+    res.json({ likes: comment.likes.length, liked: index === -1 });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update like" });
+  }
+});
 // Start server
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)

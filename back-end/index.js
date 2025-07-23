@@ -91,13 +91,13 @@ app.get("/get/:email", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user" });
   }
 });
-app.put("/user/:email", async (req, res) => {
+app.put("/user/:id", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     const updateFields = { firstName, lastName, email };
     if (password) updateFields.password = password;
-    const updatedUser = await User.findOneAndUpdate(
-      { email: req.params.email },
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
       updateFields,
       { new: true }
     );

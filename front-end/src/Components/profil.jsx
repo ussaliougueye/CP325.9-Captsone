@@ -19,7 +19,7 @@ function Profil() {
       setStatus("Passwords do not match.");
       return;
     }
-    fetch(`http://localhost:3000/user/${user.email}`, {
+    fetch(`http://localhost:3000/user/${user._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

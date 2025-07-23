@@ -79,18 +79,7 @@ app.post("/feedback", async (req, res) => {
     res.status(500).json({ error: "Failed to save feedback" });
   }
 });
-app.get("/get/:email", async (req, res) => {
-  try {
-    const email = req.params.email;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ error: "User not found." });
-    }
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch user" });
-  }
-});
+
 app.put("/user/:id", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;

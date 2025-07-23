@@ -5,7 +5,7 @@ const User = require("./models/user.js");
 const Comment = require("./models/comments.js");
 const Feedback = require("./models/feedback.js");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const dotenv = require("dotenv");
 dotenv.config();
 

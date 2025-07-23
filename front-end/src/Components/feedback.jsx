@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../stylesCSS/feedback.css";
+import { BASE_URL } from "../api"; // adjust path as needed
 
 function Feedback() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -12,7 +13,7 @@ function Feedback() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/feedback", {
+    fetch(`${BASE_URL}/feedback`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -70,7 +71,9 @@ function Feedback() {
             style={{ width: "100%" }}
           />
         </div>
-        <button className="post-submit-btn" type="submit">Submit feedback</button>
+        <button className="post-submit-btn" type="submit">
+          Submit feedback
+        </button>
       </form>
       {status && <div style={{ marginTop: 16 }}>{status}</div>}
     </div>

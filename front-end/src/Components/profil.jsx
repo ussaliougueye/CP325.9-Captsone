@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../stylesCSS/profil.css";
+import { BASE_URL } from "../api";
 function Profil() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [firstName, setFirstName] = useState(user?.firstName || "");
@@ -19,7 +20,7 @@ function Profil() {
       setStatus("Passwords do not match.");
       return;
     }
-    fetch(`http://localhost:3000/user/${user._id}`, {
+    fetch(`${BASE_URL}/user/${user._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

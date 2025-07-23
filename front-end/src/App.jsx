@@ -5,6 +5,7 @@ import Footer from "./Components/footer";
 import Feedback from "./Components/feedback";
 import Profil from "./Components/profil";
 import { Routes, Route } from "react-router-dom";
+import.meta.env.VITE_API_URL
 function App() {
   return (
     <div>

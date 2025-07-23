@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../stylesCSS/loginpage.css";
-
-const BASE_URL = "http://localhost:3000";
+import { BASE_URL } from "../api";
 
 function LoginPage() {
   const navigate = useNavigate();

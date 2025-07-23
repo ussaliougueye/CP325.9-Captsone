@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "../stylesCSS/chatperent.css";
+import { BASE_URL } from "../api";
 
 function Chatperent() {
   // State to store the list of comments (posts) fetched from the backend
@@ -10,7 +11,7 @@ function Chatperent() {
 
   // Helper to fetch comments
   const getComments = () => {
-    fetch("http://localhost:3000/comment")
+    fetch(`${BASE_URL}/comment`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -25,7 +26,7 @@ function Chatperent() {
   // Like handler
   const handleLike = async (commentId) => {
     try {
-      await fetch(`http://localhost:3000/comment/${commentId}/like`, {
+      await fetch(`${BASE_URL}/comment/${commentId}/like`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userLogged.email }),
@@ -43,7 +44,7 @@ function Chatperent() {
   const handlePostSubmit = (e) => {
     e.preventDefault();
     if (postContent.trim() !== "") {
-      fetch("http://localhost:3000/comment", {
+      fetch(`${BASE_URL}/comment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

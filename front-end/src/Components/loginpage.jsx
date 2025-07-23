@@ -88,10 +88,10 @@ function LoginPage() {
 
   return (
     <>
-      <div>
+      <div className="sg">
         <header>
           <h1 className="heading">Loging</h1>
-          <h3 className="title">Association des hommes niaw diabar</h3>
+          <h3 className="title">Let's chat</h3>
         </header>
 
         <div className="container">

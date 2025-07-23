@@ -9,6 +9,16 @@ const PORT = 3000;
 const dotenv = require("dotenv");
 dotenv.config();
 
+const path = require('path');
+
+// Serve static files from React
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+
 // Middleware
 app.use(cors());
 app.use(express.json()); // Allows parsing JSON bodies

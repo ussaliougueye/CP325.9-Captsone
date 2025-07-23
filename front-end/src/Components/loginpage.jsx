@@ -96,7 +96,7 @@ function LoginPage() {
     <>
       <div className="sg">
         <header>
-          <h1 className="heading">Loging</h1>
+          <h1 className="heading"></h1>
           <h3 className="title">Let's chat</h3>
         </header>
 

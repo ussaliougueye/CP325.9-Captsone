@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../stylesCSS/navbar.css";
 
 function Navbar() {
+  // State to track whether the navigation menu is open or closed
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -29,6 +30,11 @@ function Navbar() {
         {/* Navigation links */}
         <ul className={`nav-menu ${isMenuOpen ? "nav-open" : ""}`}>
           <li>
+            <a href="/profil" onClick={closeMenu}>
+              Profil
+            </a>
+          </li>
+          <li>
             <a href="/chat" onClick={closeMenu}>
               Chat
             </a>
@@ -38,16 +44,12 @@ function Navbar() {
               Feedback
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="#" onClick={closeMenu}>
               Contact
             </a>
-          </li>
-          <li>
-            <a href="/profil" onClick={closeMenu}>
-              Profil
-            </a>
-          </li>
+          </li> */}
+
           <li style={{ color: "red" }}>
             <a href="http://localhost:5173/" onClick={closeMenu}>
               LogOut

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../stylesCSS/chatperent.css";
 
 function Chatperent() {
+  // State to store the list of comments (posts) fetched from the backend
   const [fetchComments, setFetchComments] = useState([]);
   const [postContent, setPostContent] = useState("");
   const userLogged = JSON.parse(localStorage.getItem("user"));
@@ -62,7 +63,10 @@ function Chatperent() {
   return (
     <div className="containerParent">
       {fetchComments.map((comment) => {
-        const isOwnPost = comment.email === userLogged.email; {/*this state allows me to make sur the user can not like his or her own post*/ }
+        const isOwnPost = comment.email === userLogged.email;
+        {
+          /*this state allows me to make sur the user can not like his or her own post*/
+        }
         const likes = comment.likes ? comment.likes.length : 0;
         const alreadyLiked =
           comment.likes && comment.likes.includes(userLogged.email);
@@ -80,7 +84,9 @@ function Chatperent() {
                 style={{ position: "absolute", bottom: -30, right: 10 }}
                 onClick={() => handleLike(comment._id)}
               >
-                {alreadyLiked ? "💙" : "🤍"}{likes} {/*check if the button is alreadyLiked before letting it be clicable */}
+                {alreadyLiked ? "💙" : "🤍"}
+                {likes}{" "}
+                {/*check if the button is alreadyLiked before letting it be clicable */}
               </button>
             )}
           </div>

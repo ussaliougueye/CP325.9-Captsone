@@ -6,19 +6,25 @@ const BASE_URL = "http://localhost:3000";
 
 function LoginPage() {
   const navigate = useNavigate();
+  // State to determine if the user is on the signup form (true) or login form (false)
   const [isSignup, setIsSignup] = useState(false);
 
-  // Login form state
+  // State to store the email entered in the login form
   const [loginEmail, setLoginEmail] = useState("");
+  // State to store the password entered in the login form
   const [loginPassword, setLoginPassword] = useState("");
+  // State to store any login error messages
   const [loginError, setLoginError] = useState("");
 
-  // Signup form state
-  //const [signupName, setSignupName] = useState("");
+  // State to store the first name entered in the signup form
   const [signupFirstName, setSignupFirstName] = useState("");
+  // State to store the last name entered in the signup form
   const [signupLastName, setSignupLastName] = useState("");
+  // State to store the email entered in the signup form
   const [signupEmail, setSignupEmail] = useState("");
+  // State to store the password entered in the signup form
   const [signupPassword, setSignupPassword] = useState("");
+  // State to store the password confirmation entered in the signup form
   const [signupConfirm, setSignupConfirm] = useState("");
 
   // Validation
@@ -77,7 +83,7 @@ function LoginPage() {
         }),
       });
       const data = await response.json();
-      
+
       //console.log("✅ Signed up successfully");
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/chat"); // Redirect after success

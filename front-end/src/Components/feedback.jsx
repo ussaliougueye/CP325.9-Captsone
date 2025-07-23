@@ -37,6 +37,7 @@ function Feedback() {
         padding: 20,
         border: "1px solid #ccc",
         borderRadius: 8,
+        backgroundColor: "rgb(203, 226, 245)",
       }}
     >
       <h2>Feedback</h2>

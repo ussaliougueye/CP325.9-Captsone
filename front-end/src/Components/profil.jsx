@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../stylesCSS/profil.css";
 function Profil() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [firstName, setFirstName] = useState(user?.firstName || "");
@@ -49,6 +49,7 @@ function Profil() {
         padding: 20,
         border: "1px solid #ccc",
         borderRadius: 8,
+        backgroundColor: "rgb(203, 226, 245)",
       }}
     >
       <h2>My Profile</h2>

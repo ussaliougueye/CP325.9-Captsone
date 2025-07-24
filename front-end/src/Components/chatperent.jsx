@@ -10,17 +10,19 @@ function Chatperent() {
   const userLogged = JSON.parse(localStorage.getItem("user"));
 
   // Helper to fetch comments
-  const getComments = () => {
-    fetch(`${BASE_URL}/comment`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setFetchComments(data);
-        } else {
-          setFetchComments([]);
-        }
-      })
-      .catch(() => setFetchComments([]));
+  const getComments = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/comment`);
+      const data = await res.json();
+  
+      if (Array.isArray(data)) {
+        setFetchComments(data);
+      } else {
+        setFetchComments([]);
+      }
+    } catch  {
+      setFetchComments([]);
+    }
   }; // Fetches all comments from the backend and updates the state
 
   // Like handler

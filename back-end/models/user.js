@@ -23,28 +23,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "", // URL to profile picture
     },
-    bio: {
-      type: String,
-      default: "",
-    },
+    
     isOnline: {
       type: Boolean,
       default: false,
     },
-    // List of chat IDs or user references for conversations
-    chats: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Chat",
-      },
-    ],
-    // List of blog posts created by this user
-    posts: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
-      },
-    ],
+    
   },
   { timestamps: true }
 );

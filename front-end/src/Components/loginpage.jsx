@@ -83,7 +83,7 @@ function LoginPage() {
       });
       const data = await response.json();
 
-      //console.log("✅ Signed up successfully");
+      
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/chat"); // Redirect after success
     } catch (error) {

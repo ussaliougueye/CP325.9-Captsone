@@ -93,6 +93,12 @@ app.put("/user/:id", async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
     }
+    // Update all comments with the new fullname
+    const newFullname = `${updatedUser.firstName} ${updatedUser.lastName}`;
+    await Comment.updateMany(
+      { email: updatedUser.email },
+      { $set: { fullname: newFullname } }
+    );
     res.json(updatedUser);
   } catch (err) {
     res.status(500).json({ error: "Failed to update user" });
@@ -115,6 +121,19 @@ app.put("/comment/:id/like", async (req, res) => {
     res.json({ likes: comment.likes.length, liked: index === -1 });
   } catch (err) {
     res.status(500).json({ error: "Failed to update like" });
+  }
+});
+app.delete("/user/:id", async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    // Delete all comments by this user's email
+    await Comment.deleteMany({ email: deletedUser.email });
+    res.json({ message: "User and their comments deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to delete user and comments" });
   }
 });
 // Start server

@@ -103,7 +103,39 @@ function Profil() {
             style={{ width: "100%" }}
           />
         </div>
+
         <button type="submit">Update Profile</button>
+        <button
+          className="left"
+          type="button"
+          onClick={async () => {
+            if (
+              window.confirm(
+                "Are you sure you want to delete your profile? This action cannot be undone."
+              )
+            ) {
+              try {
+                const res = await fetch(`${BASE_URL}/user/${user._id}`, {
+                  method: "DELETE",
+                });
+                const data = await res.json();
+                if (res.ok) {
+                  localStorage.removeItem("user");
+                  setStatus("Profile deleted. Redirecting...");
+                  setTimeout(() => {
+                    window.location.href = "/";
+                  }, 1500);
+                } else {
+                  setStatus(data.error || "Failed to delete profile.");
+                }
+              } catch {
+                setStatus("Error deleting profile. Please try again.");
+              }
+            }
+          }}
+        >
+          delete Profile
+        </button>
       </form>
       {status && <div style={{ marginTop: 16 }}>{status}</div>}
     </div>
